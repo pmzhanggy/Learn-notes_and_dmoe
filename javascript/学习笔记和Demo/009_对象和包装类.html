@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象和包装类</title>
+</head>
+<body>
+	<script>
+		
+		// var mrZhang = {
+		// 	name : "zhang",
+		// 	age : 22,
+		// 	sex : "male",
+		// 	health : 100,
+		// 	smoke : function() {
+		// 		console.log("i am smoking! cool");
+		// 		this.health --;
+		// 	},
+		// 	dirnk : function() {
+		// 		console.log("i am dirnk");
+		// 		this.health ++;
+		// 	}	
+		// }
+		// //增删改查
+		// mrZhang.wife = "xiaoliu";
+		// mrZhang.age = 21;
+		// console.log(mrZhang.age);
+		// delete mrZhang.age;
+
+		/*
+		！注意：
+			变量如果没有定义时访问会报错，
+			访问对象没有的属性会返回undefined
+		*/
+
+		//对象的创建方法： 
+		// 1.var obj = {} 对象直接量
+		// 2.构造函数
+			// 1）系统自带的构造函数 Object();
+			// 2) 自定义
+
+		function Car(color) {
+			this.color = color;
+			this.name = 'BMW';
+			this.height = '1400';
+			this.lang = '4900';
+			this.weight = 1000;
+			this.health = 100;
+			this.run = function() {
+				this.health --;
+			}
+		}
+		var car1 = new Car("red");
+		var car2 = new Car("bule");
+		// car1.name = 'marserati';
+		//构造函数构造出的对象都是相同且相互独立的
+		//!!!如果构造函数不 new 的情况下 默认指向window
+
+		
+		//动态创建对象属性
+		function Student(name, age, sex){
+			//var this = {name : name}
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.grade = 2017;
+			//return this;
+		}
+		var student = new Student('zhangsan', 18, 'male');
+
+
+		/*
+		构造函数内部原理
+			1.在函数体最前面隐式的加上this = {}
+			2.执行this.xxx = xxx;
+			3.隐式的返回this
+
+		可以显示的写出retrun 但必须是对象值，{} [] fn,引用值直接忽略
+		*/
+
+		function Person(name, height) {
+			this.name = name;
+			this.height = height;
+			this.say = function() {
+				console.log(this.say);
+			}
+		}
+		console.log(new Person('zhangsan',180).name);
+
+		//模拟构造函数
+		// function Person(name, age) {
+		// 	var that = {};
+		// 	that.name = name;
+		// 	that.age = age;
+		// 	return that;
+		// }
+		// var person1 = Person('zs', 22);
+		// var person2 = Person('ls', 21);
+
+
+	//包装类
+		var num = new Number(123);//数字对象
+		var str = new String('abcd');//字符对象
+		var bol = new Boolean('true');//布尔对象
+
+		var num = 4;
+		num.len = 3;
+		// new Number(4).len = 3; delete undefined
+		// 
+		// new Number(4).len
+		console.log(num.len);
+
+
+		var str = 'abc';
+		str += 1;
+		var test = typeof(str);
+		if(test.length == 6){
+			test.sign = 'typeof的返回值为String';
+		}
+		console.log(test.sign);
+	</script>
+</body>
+</html>

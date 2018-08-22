@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date对象，定时器</title>
+    <style>
+        input{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div>
+    分：<input type="text" value="0">
+    秒：<input type="text" value="0">
+
+    <i></i>
+
+    <b></b>
+
+    <span></span>
+</div>
+<script>
+    // var div = document.getElementsByTagName('div')[0];
+    // var i = document.getElementsByTagName('i')[0];
+    // var b = document.getElementsByTagName('b')[0];
+    // var span = document.getElementsByTagName('span')[0];
+    // var p = document.createElement('p');
+    //
+    // // 封装函数insertAfter();方法,功能类似insertBefore();
+    // Element.prototype.insertAfter = function (targetNode, afterNode) {
+    //     afterNode = afterNode.nextElementSibling;
+    //     if(afterNode != null){
+    //         this.insertBefore(targetNode, afterNode);
+    //     }else{
+    //         this.appendChild(targetNode);
+    //     }
+    //     return targetNode;
+    // }
+    //
+    // // 将目标节点内部的节点顺序逆序
+    // function reverseElme(node) {
+    //     var nodes = node.children,
+    //         nodesLen = nodes.length;
+    //     for(var i = nodesLen-1; i >= 0; i --) {
+    //         node.appendChild(nodes[i]);
+    //     }
+    //
+    //     return node;
+    // }
+
+
+//日期对象 Date();
+
+    // var date = new Date(); //记录时刻，现在的当下的
+    // console.log(date.getDate());//返回今天是这个月的第几天
+    // console.log(date.getDay()); //返回今天是这周的第几天（从0开始查，0是礼拜天）
+    // console.log(date.getMonth());//返回月份(从0开始)
+    // console.log(date.getFullYear());
+    // console.log(date.getHours());
+    // console.log(date.getMinutes());
+    // console.log(date.getSeconds());
+
+
+    // console.log(date.getTime()); //返回1970年1月1日至今的毫秒数
+    //时间戳
+    // var starTiem = new Date().getTime();
+    // for(var i = 0; i < 10000000; i++) {
+    //
+    // }
+    // var endTiem = new Date().getTime();
+    // console.log(endTiem - starTiem);
+
+    // var date = new Date();
+    // date.setMinutes(57);
+    // setInterval(function () {
+    //     if(new Date().getTime() - date.getTime() > 1000){
+    //         console.log('闹铃')
+    //     }
+    // },1000);
+
+
+    //setInterval 定时循环器   setTimeout 定时器  唯一标识不会重叠 一次罗列
+
+    // var i = 0;
+    // var timer = setInterval(function () {
+    //     console.log(i++);
+    //     if(i > 10) {
+    //         clearInterval(timer);
+    //     }
+    // }, 1000);
+
+
+    // var timerout = setTimeout(function () {
+    //     console.log('只执行的一次的定时器，1000毫秒');
+    // }, 1000);
+    //
+    // clearTimeout(timerout); //这个也是需要清除的，例如登陆视频网站的会员
+
+
+    // setInterval('console.log("a")', 1000); // 另一个的使用方法
+
+
+
+//    计时器练习
+//     var inputs = document.getElementsByTagName('input');
+//     var num1 = 1,
+//         num2 =1;
+//
+//     var timer = setInterval(function () {
+//         inputs[1].setAttribute('value',num2);
+//         num2++;
+//         if(num2 == 61){
+//             num1++;
+//             inputs[0].setAttribute('value', num1);
+//             num2 = 1;
+//             if(num1 == 3){
+//                 inputs[1].setAttribute('value',0);
+//                 clearInterval(timer);
+//
+//             }
+//         }
+//     },1000);
+
+    var minutesNode = document.getElementsByTagName('input')[0];
+    var secondsNode = document.getElementsByTagName('input')[1];
+    var minutes = seconds = 0;
+    var timer = setInterval(function () {
+        seconds++;
+        if(seconds == 60) {
+            seconds = 0;
+            minutes++;
+        }
+        secondsNode.value = seconds;
+        minutesNode.value = minutes;
+        if(minutes == 3) {
+            clearInterval(timer);
+        }
+    },10);
+
+
+</script>
+</body>
+</html>

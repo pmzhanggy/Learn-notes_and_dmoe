@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this</title>
+</head>
+<body>
+	<script>
+		// - function test() {
+		// 	console.log("argumentsasdf");
+		// }()
+
+		// var num = (1, 2); 使用逗号操作符 必须加上圆括号
+
+		// function myIsNaN(num) {
+		// 	var rel = String(Number(num));
+		// 	if(rel == 'NaN'){
+		// 		return true;
+		// 	}else{
+		// 		return false;
+		// 	}
+		// }
+
+		/*
+		this
+			1.函数预编译过程 this -> window
+			2.全局作用域里 this -> window
+			3.call-apply 可以改变函数运行时的this指向
+			4.obj.func(); func()里的this就指向obj
+		*/ 
+
+		// 1.预编译是this指向window
+		// function test(c) {
+		// 	// var this  = Object.create(test.prototype);
+		// 	var a = 123;
+		// 	var b = function() {
+
+		// 	}
+		// }
+		// AO{
+		// 	arguments : [1],
+		// 	this : window,
+		// 	c :１,
+		// 	a : undefined,
+		// 	b : fn
+		// }
+
+
+
+	// arguments
+
+	// function test() {
+	// 	console.log(arguments.callee);
+	// }
+
+	// callee 表示这个函数的引用 arguments.callee == test
+	// caller 不是arguments上的属性 ，指当前函数被调用的环境
+
+	// var num = (function (n) {
+	// 	if(n == 1){
+	// 		return 1;
+	// 	}
+	// 	return n * arguments.callee(n - 1);
+	// }(10));
+	// 	test(1);
+
+	//caller
+	// function test() {
+	// 	demo();
+	// }
+	// function demo() {
+	// 	 console.log(demo.caller); // fn test
+	// }
+	// test();
+
+
+	// var obj = {
+	// 	name : 'zs',
+	// 	age : 22,
+	// 	sex : 'male',
+	// 	arr : [1,2,3,4,5] 
+	// }
+	// var obj1 = {
+	// }
+	// function clone(origin, target){
+	// 	var target = target || {};
+	// 	var objStr = Object.prototype.toString;
+	// 	for(var prop in origin){
+	// 		if(typeof(origin[prop]) == "Object"){
+	// 			if(objStr.call(origin[prop]) == "[object Array]"){
+	// 				target[prop] = "";
+	// 				clone(origin[prop],target[prop]);
+	// 			}else{
+	// 				target[prop] = {};
+	// 				clone(origin[prop],target[prop]);
+	// 			}
+	// 		}else{
+	// 			target[prop] = origin[prop];
+	// 		}
+	// 	}
+	// }
+	// clone(obj, obj1);
+
+
+
+	</script>
+</body>
+</html>

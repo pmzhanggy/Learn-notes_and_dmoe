@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习</title>
+</head>
+<body>
+	<script>
+/*
+	//包装类
+	var str = 'abc';
+	//new String(str).length   这是一个隐式的包装过程
+	console.log(str.length); //3
+
+	var num = 3;
+	num.abc = 123;
+	//1.new Number(num).abc = 3
+	//delete
+	//2.new Number(num).abc  undefined
+	//1 和 2 是两个独立的对象
+	console.log(num.abc);
+
+
+	// 一旦经历了var的操作所得出的属性(window)，这种属性是delete不掉的
+
+	window.a = 123;
+	console.log(delete a); //true
+	var b = 123;
+	console.log(delete window.b); //false
+	
+*/
+	// 继承
+	// Father.prototype = {
+	// 	name : 'zs',
+	// 	age : 22,
+	// 	sex : 'male'
+	// }
+	// function Father() {
+
+	// }
+	// function Son() {
+		
+	// }
+
+	// var inhreit = (function() {
+	// 	var F = function(){};
+	// 	return function(Target, Origin) {
+	// 		F.prototype = Origin.prototype;
+	// 		Target.prototype = new F();
+	// 	}
+	// }());
+	// inhreit(Son, Father);
+	// var son = new Son();
+
+
+//闭包
+	// function demo() {
+	// 	var arr = [];
+	// 	for(var i = 0; i < 10; i++){
+	// 		(function(j) {
+	// 			arr[j] = function () {
+	// 			console.log(j);
+	// 			}
+	// 		}(i));
+	// 	}
+	// 	return arr;
+	// }
+	// var demo1 = demo();
+	// for(var j = 0; j < 10; j++){
+	// 	console.log(demo1[j]());
+	// }
+	
+	// var str = 'abcdefedcbag';
+	// strArr = str.split("");
+	// var myStr = strArr;
+	// for(var i = 0; i < strArr.length; i++){
+	// 	for(var j = 0; j < myStr.length; j++){
+	// 		if(myStr[j] == strArr[i]){
+	// 			var	myStr[j] = myStr[j];
+	// 		}
+	// 	}
+	// }
+
+
+//字符串去重
+	// var str = 'abcdefedcba00';
+	// String.prototype.unique = function(){
+	// 	var obj = {},
+	// 		myStr = '';
+	// 	for(var i = 0; i < this.length; i++){
+	// 		if(!obj[this[i]]){
+	// 			obj[this[i]] = this[i];
+	// 			myStr += obj[this[i]];
+	// 		}
+	// 	}
+	// 	return myStr;
+	// }
+	</script>
+</body>
+</html>

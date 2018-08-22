@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>json</title>
+</head>
+<body>
+<script>
+    /*
+    *json
+    *   json是一种传输数据的格式(以对象为样板，本质上就是对象，但用途有所区别，对象
+    *   是本地用的，json是传输用的)
+    *
+    *   Json.parse(); string - json
+    *   Json.stringify(); json - string*/
+
+    var obj = {
+       "name" : 'zs',
+       "age" : 123
+    }
+    //把对象转成字符串
+    var str = JSON.stringify(obj); //"{"name":"zs","age":123}"
+
+    //把字符串转成对象
+    var jsonObj = JSON.parse(str);
+
+
+//异步加载js
+    // js引擎在绘制页面时使用的是深度优先原则，然后广度
+    // domTree + cssTree = randerTree 最后网页是按照randerTree绘制的，
+    // 如果使用js改变dom，randerTree就得重构(reflow)，网页就得重新绘制，浪费效率
+
+    /*
+    javascript异步加载三个方案:
+      1.defer异步加载,但要等到dom文档全部解析完才会被执行，只有IE可用，可以将代码写到内部
+      2.async异步加载，加载完就执行，async只能加载外部脚本，不能把async写在script标签里
+      3.
+     */
+    //创建
+    var script = document.createElement('script');
+    //设置
+    script.type = 'text/javascript';
+    // 下载
+    script.src = 'tools.js';
+    //引入js文件
+    document.head.appendChild(script);
+
+    // type(); //报错，并不是不能执行，还没下载完成
+
+    script.onload = function () {
+        loadScript('demo.js', function () {
+            test();
+        }); //确保下载完之后再执行 IE不支持
+    }
+
+    //IE
+    // script.onreadystatechange = function () {
+    //     if(script.readyState == 'complete' ||　script.readyState == 'loaded'){
+    //         type();
+    //     }
+    // }
+
+
+        // var script = document.createElement('script');
+        // script.type = 'text/javascript';
+        // script.src = 'tools.js';
+        // document.head.appendChild(script);
+        // if(script.readyState) { //判断状体码
+        //     script.onreadystatechange = function() { //监听状体码
+        //         if(script.readyState == 'complete' || script.readyState == 'loaded') {
+        //             test();
+        //         }
+        //     }
+        // }else{
+        //     script.onload = function () {
+        //         test();
+        //     }
+        // }
+
+//js加载时间线
+
+</script>
+</body>
+</html>

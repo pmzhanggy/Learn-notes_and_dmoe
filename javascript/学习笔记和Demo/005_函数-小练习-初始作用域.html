@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	// 函数
+		// 定义 按小驼峰命名规则
+		// 声明：
+			// function test() { 函数声明
+
+			// }
+
+			// var test = function(){ test.name = "test"
+				//document.write("a");
+			// }
+
+			// var test = function abc() { //函数表达式中 abc无效 test.name = "abc";
+			// 	document.write("a");
+			// }
+
+
+		// function test(a, b){ //形参  不限制个数
+		// 	// var a; 形参的隐式创建
+		// 	// var b;
+
+		// }
+		// test(1, 2); //实参 不限制个数
+		//形参和实参对应的情况下，存在映射关系，但是分别独立
+		//形参比实参多的情况下，就是undefined,(写形参就相等于在函数中声明一个对应的变量)
+		//形参2个实参1个，修改第二个形参的值，实参的第二个只依旧是没有
+
+		function test(a, b) {
+			//arguments:类数组  实参列表 会保存多余的实参
+			// console.log(arguments);
+			// for(var i = 0; i < arguments.length; i++){
+			// 	console.log(arguments[i]);
+			// }
+
+			// console.log(test.length); //形参的长度
+
+			if(arguments.length > test.length){
+				console.log("实参多了");
+			}else{
+				console.log("形参多了");
+			}
+		}
+		test(1, 'abc', undefined);
+
+
+		//任意数求和
+		function sum(){
+			var mul = 0;
+			for(var i = 0; i < arguments.length; i++){
+					mul += arguments[i];
+			}
+			console.log(mul);
+		}
+		sum(1,2,3);
+
+
+		// return; 函数终止语句 如果不显式的写return语句 函数内部会隐式的加上此语句
+
+		function myNumber(target){
+			// var num = Number(target);
+			// return num;
+			return typeof(+target)+" "+ +target; 
+		}
+		
+
+
+
+	//为什么不可以直接return Number("123");   Number(); 也是一个函数 他也有返回值  
+
+
+		//练习
+		//1.写一个函数，功能是告知你所选定的小动物的叫声。
+		
+			function animal(animalName){
+				switch(animalName){
+					case "猫":
+						return "喵~";
+					case "狗":
+						return "汪~";
+				}
+			}
+			console.log(animal("猫"));
+
+		//2.写一个函数，实现加法计数器
+
+			function Calculator() {
+				var sum = 0;
+				if(arguments.length == 0){
+					console.log("请输入需要计算的自然数");
+				}else{
+					for(var i = 0; i < arguments.length; i++){
+						sum += arguments[i];
+					}
+				}
+				return sum;
+			}
+	
+		// 3.定义一组函数，输入数字，逆转并输出汉字形式
+
+			function myReverse(){
+			
+				for(var i = arguments.length -1; i >= 0 ; i--){
+					console.log(transformationChineseCharacters(arguments[i]));
+				}
+			}
+			function transformationChineseCharacters(value){
+				switch(value){
+					case 1:
+						return "壹";
+					case 2:
+						return "贰";
+					case 3:
+						return "叁";
+				}
+			}
+
+		// 4.写一个函数实现n的阶乘。
+
+			function factorial(value) {
+				var num = sum = value;
+				if(value == 1 || value == 0){
+					console.log(1);
+				}else{
+					for(var i = 0; i < num; i++){
+					num--;
+					sum *= num;
+				}
+				console.log(sum);
+				}
+			}
+			factorial(4);
+
+		// 5.写一个函数实现斐波那契
+
+			function fibonacciSeries() {
+				var num1 = num2 = 1,num3 = 0;
+				document.write(num1+"<br/>"+num2);
+				if(num3 < 100){
+					for(var num3 = 0; num3 < 100;){
+					num3 = num2 + num1;
+					document.write(num3+"<br/>");
+					num1 = num2;
+					num2 = num3;
+					}
+				}
+				
+			}
+</script>
+</body>
+</html> 

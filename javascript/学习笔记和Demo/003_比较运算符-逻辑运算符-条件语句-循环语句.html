@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var a = "a" + "b";	
+
+		// var num =  1 / 0;
+
+		// var a = 123;
+		// var b = 456;
+		// a = a + b;
+		// b = a - b;
+		// a = a - b;
+
+	//比较运算符 
+
+		//var a = "10" > "8";  //false
+		//如何是字符串比较的是ascii码  A:97 -32位- a:65，如果是字符串数字
+
+		//var b = 1 == 2;
+		//var b = 1 != 2;//比较值
+
+		//var c = NaN == NaN;//false 
+
+
+	//逻辑运算符 && || ！ 与或非
+		//undefined null NaN "" 0 false == false
+
+		//如果只有两个值，那先看第一个表达式转换值是否为真，如果为真直接返回第二个表达式的值，如果为false则返回第一个表达式的值，(如果为真往后找，如果为假就返回假)，找为false的，如果都为true则返回最后一个
+		//var a = 1 + 1 && 2;// 2
+
+		//var date = "...";
+		//dete && console.log("输入传入成功！"); //用短路语句来判断是否执行
+
+		//var num = 1 || 2;
+		//如果为真就返回当前值，遇到假就往后看，如果都是假的就返回最后一个假的值
+
+		// onclick = function(e){  //做IE浏览器的兼容
+		// 	var event = e || window.event;
+		// }
+
+		// var a = !123;//转为boolean值再取反
+		// var b = !!0; //false
+		// var c = true;
+		// c = !c; //
+
+
+	//条件语句
+
+		// var score = parsetInt(window.prompt("input"));
+		// if(score > 90 && score <= 100){
+
+		// }
+
+	//循环语句
+		//    1          2       3
+		// for(var i = 0; i < 10; i++){
+		// 	document.write(a); // 2
+		// }
+		/*
+		执行顺序：
+			1.var i = 0;
+			2.if(i < 10){
+	
+			}
+			3.i++ 》	i = 0;
+
+		*/
+		//能被3、5、7整除
+		// for(var i = 0; i < 100; i++){
+		// 	if(i % 3 == 0 || i % 5 == 0 || i % 7 == 0){
+		// 		console.log(i);
+		// 	}
+		// }
+
+
+		// var i = 0;
+		// while(i < 100){
+		// 	if(i % 7 == 0 || i % 10 == 7){
+		// 		console.log(i+" "); 
+		// 	}
+		// 	i++;
+		// }
+
+		// do{
+
+		// }while();
+
+
+
+		//练习题
+
+			//计算2的n次幂，n可输入，n为自然数：注意循环次数 2的1次幂为2
+			// var count = 1;
+			// var prom = parseInt(prompt("input"));
+			// console.log(prom);
+			// for(var i = 0; i < prom; i++){
+			// 	 count *= 2;
+			// }
+			// document.write(count);
+
+
+			//计算n的阶乘，n可输入  需要注意规律 例如 1的阶乘 5*4*3*2*1
+			// var input = parseInt(prompt("input"));
+			// var count = input;
+			// if(input == 1 || input == 0){
+			// 	document.write(1);
+			// }else{
+			// 	for(var i = 0; i < input; i++){
+			// 	input--;
+			// 	count *= input;
+			// 	}
+			// 	document.write(count);
+			// }
+			
+
+			//斐波那契数列
+			var num1 = 1, num2 = 1;
+			for(var num3 = 0; num3 < 100;){
+				num3 = num1 + num2;
+				document.write(num3+"<br/>");
+				num1 = num2;
+				num2 = num3;
+			}
+
+
+			//输出最大值
+			// var a = 1, b = 2, c = 3;
+			// if(a > b){
+			// 	if(a > c){
+			// 		console.log(a);
+			// 	}else{
+			// 		console.log(c);
+			// 	}
+			// }else{
+			// 	if(b > c){
+			// 		console.log(b);
+			// 	}else{
+			// 		console.log(c);
+			// 	}
+			// }
+
+			//反向输出  未完成
+			// var input = parseInt(window.prompt("input"));
+			// var a,b,c;
+			// a = input % 10;
+			// b = input % 100;
+			// c = input % 1000;
+
+			//打印100以内的质数
+
+			for(var i = 2; i < 100; i ++) {
+				for(var j = 2; j <= i; j++) {
+
+					if(i % j != 0){
+						console.log(i);
+					}
+				}
+			}
+			
+	</script>
+</body>
+</html>

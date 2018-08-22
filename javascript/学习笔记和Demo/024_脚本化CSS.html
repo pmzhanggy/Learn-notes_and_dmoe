@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>脚本化CSS</title>
+    <style>
+        div::after{
+            content: '';
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100px;height: 100px;background-color: red;"></div>
+<script>
+    /*
+    * 读写元素的CSS属性
+    *   dom.style.prop
+    *       可读写行间样式，没有兼容问题，碰到float这样的保留字属性，前面应加CSS*/
+
+    /*
+    * 查询计算样式
+    *   window.getComputedStyle(ele, null)
+    *   计算样式只读
+    *   返回计算样式的值都是绝对值(em就是相对值)，没有相对单位
+    *   IE8及一下不兼容
+    *   elem.currentStyle IE8及一下兼容的方法 返回最后展示非计算值*/
+
+    function getStyle(elem, prop) {
+        if(window.getComputedStyle) {
+            return window.getComputedStyle(elem, null)[prop];
+        }else{
+            return elem.currentStyle[prop];
+        }
+    }
+
+
+    // window.getComputedStyle(ele, null) 第二个参数时填写伪元素的，可以返回计算后的元素的样式
+    var div = document.getElementsByTagName('div')[0];
+    console.log(getComputedStyle(div, 'after').width); //10px
+
+//    知识拓展，点击div时改变伪元素，可以通过js更换类名，来修改After
+</script>
+</body>
+</html>

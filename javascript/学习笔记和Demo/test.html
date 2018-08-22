@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var a = {n : 1};
+    var b = {n : 2};
+    b.x = a = {n : 3};
+    console.log(b.x);
+
+    var a = {n : 1};
+    var b = {n : 2};
+    a.x = a = {n : 3};
+    console.log(a.x);
+
+
+
+
+
+
+</script>
+</body>
+</html>

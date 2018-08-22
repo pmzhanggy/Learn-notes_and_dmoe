@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+    /*
+    * 查看滚动条的滚动距离
+    *   window.pageXOffset
+    *   window.pageYOffset*/
+
+    function getScrollOffset() {
+        if(window.pageXOffset) {
+            return {
+                x : window.pageXOffset,
+                y : window.pageYOffset
+            }
+        }else{
+            return {
+                x : document.body.scrollLeft + document.documentElement.scrollLeft,
+                y : document.body.scrollTop + document.documentElement.scrollTop,
+
+            }
+        }
+
+    }
+
+
+/*
+* 可视区窗口
+*   window.innerHeight
+*   window.innerWidth
+*   */
+    function getViewportOffset() {
+        if(0 && window.innerHeight){
+            return {
+                W : window.innerWidth,
+                H : window.innerHeight
+            }
+        }else{
+            if(document.compatMode === 'BackCompat'){ //判断是否是怪异模式
+                return {
+                    W : document.body.clientWidth,
+                    H : document.body.clientHeight
+                }
+            }else{
+                return {
+                    W : document.documentElement.clientWidth,
+                    H : document.documentElement.clientHeight
+                }
+            }
+        }
+    }
+
+/*
+* 查看元素尺寸
+* dom.offsetWidth, dom.offsetHeight*/
+
+/*
+* 查看元素尺寸
+* dom.offsetWidth, dom.offsetHeight*/
+</script>
+</body>
+</html>

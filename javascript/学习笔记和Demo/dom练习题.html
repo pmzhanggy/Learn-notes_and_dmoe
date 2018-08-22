@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM练习题</title>
+</head>
+<body>
+<div>
+    <span>span</span>
+    <p>p</p>
+    <em>em</em>
+    <strong>strong</strong>
+    <section>secton</section>
+    <article>article</article>
+</div>
+<script>
+
+    var div = document.getElementsByTagName('div')[0];
+    var strong = document.getElementsByTagName('strong')[0];
+
+    // 1.遍历元素节点数(在原型链上编程)
+    Element.prototype.bianli = function () {
+        var elementObj = {
+            length : 0,
+            push : Array.prototype.push,
+            splice :　Array.prototype.splice
+            },
+            elements = this.childNodes,
+            len = elements.length;
+        for(var i = 0; i < len; i++){
+            if(elements[i].nodeType == 1){
+                elementObj.push(elements[i]);
+            }
+        }
+        return elementObj;
+    }
+
+    // 2.封装函数，返回元素e的第n层祖先元素节点
+    function retParent(elem, n) {
+        while(elem && n) {
+                elem = elem.parentNode;
+            n --;
+        }
+        return elem;
+    }
+
+    // 3.封装函数，返回元素e的第n个兄弟元素节点，n为正，返回后面的兄弟元素，n为负，返回前面的兄弟元素
+    function retSibling(elem, n) {
+        while (elem && n){
+            if(n > 0) {
+                if(elem.nextElementSibling){
+                    elem = elem.nextElementSibling;
+                }else{
+                    for(elem = elem.nextSibling; elem && elem.nodeType != 1; elem = elem.nextSibling);
+                }
+                n --;
+            }else{
+                if(elem.previousElementSibling) {
+                    elem = elem.previousElementSibling;
+                }else{
+                    for(elem = elem.previousSibling; e && e.nodeType != 1; elem = elem.previousSibling);
+                }
+                n++;
+            }
+        }
+        return elem;
+    }
+    
+    
+    // 4.编辑函数，封装myChildren功能，解决以前浏览器部分的兼容问题
+    function myChildren(element) {
+        var elementsObj = {
+            length :　0,
+            push : Array.prototype.push,
+            splice : Array.prototype.splice
+            },
+            mye = element.childNodes;
+
+        for(var i = 0; i < mye.length; i ++) {
+            if(mye[i].nodeType == 1){
+                elementsObj.push(mye[i]);
+            }
+        }
+        return elementsObj;
+    }
+
+    // 5.自己封装hasChildren()方法,不可以使用children属性
+    function hasChildren(e) {
+        var element = e.childNodes,
+            len = element.length;
+       if(len > 0){
+           for(var i = 0; i < len; i ++) {
+               if(e.childNodes[i].nodeType == 1) {
+                   return true;
+               }else{
+                   continue;
+               }
+           }
+           return false;
+       }else{
+           return false +'1';
+       }
+    }
+
+//
+</script>
+</body>
+</html>

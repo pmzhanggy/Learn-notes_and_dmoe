@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>递归，预编译</title>
+</head>
+<body>
+  <script>
+    //递归 1.找规律 2.找出口
+    
+    //求n的阶乘  n = n * n - 1
+    function mul(n) {
+      if(n == 1 || n == 0){
+        return 1;
+      }
+      return n * mul(n - 1); //先执行的最后执行完  返回n-1的结果需要n-2的结果，一次类推 
+    }
+
+    //斐波那契数列
+    function fb(n) {
+      if(n == 1 || n == 2){
+        return 1;
+      }
+      return fb(n - 1) + fb(n - 2);
+    }  
+
+  
+    //预编译前奏
+    // imply global 暗示全局变量 变量未被声明就赋值，此变量就为全局对象所有 window
+    //window就是全局的域
+
+    /*
+    js执行三部曲 1.通便扫描，语法分析 2.预编译  3.解释执行
+      预编译四部曲
+        1.创建AO对象 Activation Object(执行期上下文(作用域))
+        2.找形参和变量声明，将变量和形参作为AO对象的属性，并赋值undefined
+        3.将实参和形参统一
+        4.在函数体里面找函数声明，并赋值函数体
+    */
+
+    // function fn(a) {
+    //      console.log(a);  
+    //      var a = 123;
+    //      console.log(a); 
+    //      function a() {}
+    //      console.log(a); 
+    //      var b = function() {}
+    //      console.log(b); 
+    //      function d(){}
+    // }
+    // fn(1);
+    //预编译发生在函数执行的前一刻
+
+    // function test(a, b) {
+    //  console.log(a);
+    //  c = 0;
+    //  var c;
+    //  a = 3;
+    //  b = 2;
+    //  console.log(b);
+    //  function b() {}
+    //  function d() {}
+    //  console.log(b);
+    // }
+    // test(1);
+
+    // function test(a, b) {
+    //  console.log(a); //fn
+    //  console.log(b); //undefined
+    //  var b = 234;
+    //  console.log(b); //234;
+    //  a = 123;
+    //  console.log(a); //123
+    //  function a() {}
+    //  var a;
+    //  b = 234;
+    //  var b = function() {}
+    //  console.log(a); //123
+    //  console.log(b); // fn
+    // }
+    // test(1);
+
+
+    //预编译不只是发生在函数体，还发生在全局
+    //生成了一个GO对象， Global Object
+
+    // function test() {
+    //  var a = b = 123;
+    //  //b就是暗示全局变量 在GO中
+    // }
+
+    // console.log(test);
+    // function test(test) {
+    //  console.log(test); 
+    //  var test = 234;
+    //  console.log(test); 
+    //  function test(){}
+    // }
+    // test(1);
+    // var test = 123;
+
+
+    // function test() {
+    //  console.log(b); 
+    //  if(a){           //if在预编译时不会影响变量提升  a：undefined == false 
+    //    var b = 100; //b不会执行赋值操作
+    //  }
+    //  console.log(b); 
+    //  c = 234;
+    //  console.log(c);
+    // }
+    // var a;
+    // test();
+    // // AO{
+
+    // // }
+    // a = 10;
+    // console.log(c); 
+
+
+    //百度13年笔试题(2道)
+
+    function bar() {
+     return foo;
+     foo = 10;
+     function foo() {
+
+     }
+     var foo = 11;
+    }
+    console.log(bar());  
+
+
+    console.log(bar()); 
+    function bar() {
+     foo = 10;
+     function foo() {
+
+     }
+     var foo = 11;
+     return foo;
+    }
+
+
+    // a = 100;
+    // function demo(e) {
+    //  function e() {}
+    //  arguments[0] = 2;
+    //  console.log(e); 
+    //  if(a){
+    //    var b = 123;
+    //    function c() {} // 从16年开始if中是不可以写函数的
+    //  }
+    //  var c;
+    //  a = 10;
+    //  var a;
+    //  console.log(b);
+    //  f = 123;
+    //  console.log(c);
+    //  console.log(a);
+    // }   
+    // var a;
+    // demo(1);
+    // console.log(a);
+    // console.log(f);
+
+    	
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//条件语句补充 switch case   break:终止循环	continue:终止本次循环
+
+		//typeof操作符 number string boolean object undefined(undefined) function
+		//null 返回 object 历史遗留问题 ， 最初null是作为对象占位符使用的
+
+
+		//显示类型转换
+			// var num = Number("123"); //这个方法就是把值转换成数字  null:0  undefined:NaN
+			// var num1 = parseInt(12.34); //12 把值转换为整形 对boolean等类型无效：NaN,
+			// var num1 = parseInt("b",16);//11 以16进制来把值转换为10进制(基底，以目标进制)
+			// var num1 = parseInt("123abc");// 123 遇到不是数字的就返回之前检测通过的
+			// var num2 = parseFloat("123.4.a);//123.4 除了第一个点的非数字位
+			// var num3 = String(123); // '123bc "' 转换为字符串
+			// var num4 = Boolean(12); //true
+			// .toString(); //undefind和null 不能使用toString();
+			// .toString(8);//默认以10进制为基底转换为8进制 
+
+			//把 a转为16进制
+			// var a = 1010101010;
+			// var num = parseInt(a,2).toString(16); 
+		
+
+		//隐式类型转换
+			//console.log(isNaN("abc"));//内部隐式Number();再来判断是不是NaN
+			//var a = "123"; a++; //124 隐式调用Number() "abc":NaN Number类型
+			//+正 -负//Number()
+			// var a  = "a" + 1;
+			//如果两边有一个值时字符串类型的就会隐式调用String();
+			// var a = "a" * 1;//NaN  a(:NaN) * 1 = NaN  -*/% - Number();
+			//& & || !
+			// > < <= >= Number()
+			// - * / 都会隐式的调用number
+			// undefined == null ? false:true
+			// NaN == NaN : false
+
+		//不发生类型转换
+			// === 绝对等于
+			// !== 绝对不等于
+
+		//把未定义的变量 放在typeof()里面 是不会报错的 并返回值
+		//console.log(typeof(typeof(a))); 
+
+
+
+	//练习题
+	console.log(typeof(a)+'undefined');
+	console.log(typeof(undefined)+'undefined');
+	console.log(typeof(NaN)+'number');
+	console.log(typeof(null)+'Object');
+	console.log(typeof(typeof(a))+'string'); 
+	var a = '123abc';
+	console.log(typeof(+a)+'Number'); 
+	console.log(typeof(!!a)+'boolean');
+	console.log(typeof(a + "")+'string');
+	console.log(1 == "1" +'true'); 
+	console.log(NaN == NaN+'false');
+	console.log(NaN == undefined+'false');
+	console.log("11" + 11+'1111');
+	console.log(1 === '1'+'false');
+	console.log(parseInt("123abc")+'123');
+	var num = 123123.345789;
+	console.log(num.toFixed(3)+'123123.346');
+
+	
+
+	// var bool = new Boolean(false);
+	// console.log(bool);
+	// if (bool) {
+	//  alert('true');
+	// } else {
+	//  alert('false');
+	// }
+
+
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM基本操作</title>
+</head>
+<body>
+    <div>
+        <p></p>
+        <span>span1</span>
+        <!-- this is comment -->
+    </div>
+    <span>span2</span>
+<script>
+
+    // document : 整个文档
+    // Document : 构造函数，这个构造函数是不是new的
+
+    // document -> HTMLDocument.prototype -> Document.prototype -> NodeJS 原型链的继承关系
+    // console.log(document.documentElement); // 表示htmlElement
+    //
+    // var div = document.getElementsByTagName('div')[0];
+    // var span = div.getElementsByTagName('span')[0];
+    // console.log(span);
+
+
+//    增
+    var div = document.createElement('div'); //创建元素节点
+    var text = document.createTextNode('田儿');
+    var comment = document.createComment('this is comment');
+
+//    插入方法  可以元素结构  剪切操作  兄弟结构的 div span  通过 div.appendchild(span)
+//      就会变成 <div> <span> </span> </div>
+    document.body.appendChild(div).appendChild(text);
+
+//      div.insertBefore(a, b); 在div父元素下b之前插入a
+
+//    删除   父节点删除子节点 parent.removeChild();   子节点删除 child.remove();
+
+//    替换  parentNode.replaceChild(new, origin); 拿新(new)的替换老的(origin)
+
+
+/*
+* Element节点上的一些属性
+*   innerHTML:修改和获取元素中的内容，可修改结构
+*   innerText(火狐不兼容)/textContent(老版本的IE不好使)修改和获取元素中的内容，可修改结构
+*
+* Element节点上的一些方法 设置和获取行间属性 支持自定义属性
+*   ele.setAttribute();
+*   ele.getAttribute();
+*   */
+
+    var div = document.createElement('div');
+    var p = document.createElement('p');
+    div.setAttribute('class','example');
+    p.setAttribute('class','slogin');
+    p.innerText = '田田最美';
+    document.body.appendChild(div).appendChild(p);
+</script>
+</body>
+</html>

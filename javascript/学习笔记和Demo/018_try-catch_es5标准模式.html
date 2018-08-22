@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+// try-catch
+	// try{
+
+	// 	console.log("a"); //正常执行
+	// 	console.log(b);	//b  报错，c是不会执行的，但是try{}以外的会正常执行
+	// 	console.log("c");//未执行
+
+	// }catch(e){ //捕捉错误 error.message error.name -> error
+
+	// 	console.log(e);
+
+	// }
+
+	// console.log("d");//正常执行
+
+/*
+Error.name的六种值对应的信息：
+	1.EvalError:eval()的使用与定义的不一致
+	2.RangeError:数值越界
+	3.ReferenceError:非法不能识别的引用数值(没定义好)
+	4.SyntaxError:发生语法解析错误
+	5.TypeError:操作数类型错误
+	6.URLError:URL处理函数使用不当
+*/ 
+
+// ES5 严格模式
+	// 基于es3.0的 + es5.0的新增方法(冲突的那部分使用的是es3.0的)
+	// 在es5.0的严格模式下，使用es5.0的方法
+
+	"use strict"; //启用es5.0严格模式 写在页面逻辑的最顶端(可以写在全局，可以写在局部)
+
+	// 不可以使用 with(),arguments.callee,func.caller 
+	// 变量赋值前必须声明
+	// 局部的this必须赋值，预编译时this== undefined,(全局window)
+	// 拒绝重复的属性和参数
+	function test() {
+		console.log(arguments.callee); //在es5中不可以使用arguments.callee
+	}
+	test();
+	</script>
+</body>
+</html>

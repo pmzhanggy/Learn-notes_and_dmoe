@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承模式，命名空间(使用闭包私有化属性)，对象枚举</title>
+</head>
+<body>
+	<script>
+	/*
+	继承发展史
+	1.传统模式 ——》 原型链： 过多的继承了没用的属性
+	2.借用构造函数 ： 不能借用构造函数的原型，每次构造函数都要多走一个函数
+	3.共享原型：不能随便改动自己的原型
+	4.圣杯模式：
+	*/
+
+//1.传统模式
+	// Grand.prototype.lastName = 'zs';
+	// function Grand() {
+
+	// }
+	// var grand = new Grand();
+
+	// Father.prototype = grand;
+	// function Father() {
+	// 	this.name = 'hehe';
+	// }
+	// var father = new Father();
+
+	// Son.prototype = father;
+	// function Son() {
+
+	// }
+	// var son = new Son();
+
+// 2.借用构造函数
+	// function Person(name, age, sex) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// 	this.sex = sex;
+	// }
+	// function Student(name, age, sex, grade) {
+	// 	Person.call(this, name, age, sex);
+	// 	this.grade = grade;
+	// }
+	// var student = new Student('zs', 22, 'male', '不懂');
+
+
+// 3.共享原型    
+	// Father.prototype.lastName = 'zs';
+	// function Father() {
+
+	// }
+
+	// Son.prototype = Father.prototype;
+	// function Son() {
+
+	// }
+
+	// function inherit(Target, Origin) {
+	// 	Target.prototype = Origin.prototype;
+	// } 
+	// inherit(Son, Father);
+	// Son.prototype.sex = 'male'; // son想给自己添加一个属性，结果father跟着一起改了
+	// var son = new Son();
+	var father = new Father();
+
+
+//4.圣杯模式
+	Father.prototype.lastName = "zs";
+	function Father() {
+
+	}
+
+	function Son() {
+
+	}
+	// function inherit(Target, Origin) {
+	// 	function F(){};
+	// 	F.prototype = Origin.prototype; //
+	// 	Target.prototype = new F();	//注意这两行的顺序
+	// 	// Target.prototype.constuctor = Target; //指定
+	// 	Target.prototype.uber = Origin.prototype; //存储它真正继承自谁
+	// }
+
+	//YUI
+	var inherit = (function() {
+		var F = function() {}
+		return function(Target, Origin) {
+			F.prototype = Origin.prototype;
+			Target.prototype = new F(); 
+			Target.prototype.uber = Origin.prototype;
+		}
+	}());
+	 inherit(Son, Father);
+
+
+
+	var son  =  new Son();
+	var father = new Father();
+	Son.prototype.sex = 'male'; //父级不会添加原型
+
+
+	//闭包私有化变量
+	function Deng(name, wife) {
+		var prepareWife = 'xiaozhang'; //私有化变量  
+		this.name = name;
+		this.wife = wife;
+		this.divorce = function() {
+			this.wife = prepareWife;
+		}
+		this.changePrepareWife = function(target) {
+			prepareWife = target;
+		}
+		this.sayPrepareWife = function() {
+			console.log(prepareWife);
+		}
+	}
+	var deng = new Deng('deng', 'xiaoliu');
+	// prepareWife存在执行上下文中，函数执行完毕销毁，但是this.函数名 行成了闭包，操作 prepareWife
+
+
+	/*
+	命名空间
+		管理变量，防止污染全局，适用于模块化开发
+	*/
+	var org = {
+		department1 : {
+			zhangguiyun : {
+				name :　'zhangguiyun',
+			}
+		},
+		department2 : {
+			zhangguihao : {
+				
+			}
+		}
+	} 
+	var zhangguiyun = org.department1.zhangguiyun;
+	console.log(zhangguiyun.name);
+
+//利用闭包私有化变量，避免变量冲突，全局变量污染
+	// name = 123;
+	// var init = (function() {
+	// 	var name = 'abc';
+	// 	function callName() {
+	// 		console.log(name);
+	// 	}
+	// 	return function() {
+	// 		callName();
+	// 	}
+	// }());
+
+
+//知识扩展
+//模拟JQuery的方法连续调用
+	
+	var deng = {
+		smoke : function() {
+			console.log('i am smokeing');
+			//return undefined;
+			return this;
+		},
+		drink : function() {
+			console.log('drinking');
+			return this;
+		},
+		perm : function() {
+			console.log('perming');
+		}
+	}
+	//deng.smoke().drink(); //Error: 'drink' of undefined 因为 someke()方法的返回值就是undefined 所以 undefined.dirin();
+
+	deng.smoke().drink().perm();
+
+// obj.name --> obj['name']  加引号是属性，不加引号是变量，obj.name底层就是把它转化成obj['name']
+
+	var deng  = {
+		name1 : 'a',
+		name2 : 'b',
+		name3 : 'c',
+		sayName : function(num) {
+			return this['name' + num]; //属性名拼接的办法
+		}
+	}
+	console.log(deng.sayName(1));
+
+
+/*
+对象枚举
+	for in  
+	hasOwnProperty
+	in 
+	instanceof
+*/
+	// var arr = [1, 2, 4, 5, 3, 7, 9];
+	// for(var i = 0; i < arr.length; i++){
+	// 	console.log(arr[i]);
+	// }
+
+	var obj = {
+		name : 'zgy',
+		age : 22,
+		sex : 'male',
+		height : 177,
+		weith : 151,
+		
+		// prop : 123
+		__proto__ : {
+			lastName : 'Zhang'
+		}
+	}
+	Object.prototype.girlName = "Yan"; //!obj.hasOwnProperty(prop)
+	for(var prop in obj){  //把obj对象中的属性名存放到 prop中
+		// console.log(obj.prop ---> obj['prop']);// 5个undefined 去访问obj的prop的属性 没有 所以ud
+
+		// console.log(obj[prop]); //还可以把原型中的属性打印出来
+
+		//如何实现不打印原型中的属性 hasOwnProperty();
+		if(!obj.hasOwnProperty(prop)){  //判断属性是不是非原型的 系统定义的原型属性是被不会打印的
+			console.log(obj[prop]);
+		}
+
+		//in    访问'height': 属性名  height: 变量名
+		// 'height' in obj; 判断这个属性是不是这个类或这个类的原型
+
+
+		//instanceof : 
+		// A对象 instanceof B 判断A是不是B构造函数构造出来的
+		// person instanceof Object  true 
+		// [] instanceof Object   true
+		//看A对象的原型链上有没有B的原型
+		function Person() {
+
+		}
+		var person = new Person();
+
+		console.log(person instanceof Person); //true
+	}
+	var myvariale = {};
+	console.log(myvariale instanceof Array ? "数组" : "对象");
+
+	</script>
+</body>
+</html>

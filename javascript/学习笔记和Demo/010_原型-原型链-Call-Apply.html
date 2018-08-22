@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型和原型链</title>
+</head>
+<body>
+	<script>
+		//封装一个函数，计算字符串的字节长度
+		// var str = "abc";
+		// function getStrLen(str) {
+		// 	var strLen = count = str.length;
+		// 	for(var i = 0; i < strLen; i++) {
+		// 		if(str.charCodeAt(i) > 255){
+		// 			count ++;
+		// 		}
+		// 	}
+		// 	return count;
+		// }
+		
+		/*
+		原型
+			1.定义：原型是function对象的一个属性，它定义了构造函数构造出的对象的公共祖先。通过该函数构造出的对象，可以继承原型的属性和方法。原型也是对象。
+			2.利用原型的特点和概念，可以提取共有属性。
+			3.对象如何查看原型 ——》 隐式属性 __proto__
+			4.对象如何查看对象的构造函数 ——》 constructor
+		*/ 
+		// Person.prototype.LastName = "Deng";
+		// Person.prototype.name = 'ls';
+		// function Person(name, age, sex) {
+		// 	this.name = name; //perosn1.name 如果自己有就找自己的 zs
+		// 	this.age = age;
+		// 	this.sex = sex;
+		// } 
+		// var person1 = new Person("zs", 22, "male");
+
+		// 利用原型的特点和概念，可以提取共有属性
+		// Car.prototype.height = 1400;
+		// Car.prototype.lang = 4900;
+		// Car.prototype.carName = 'BMW';
+		// Car.prototype = {
+		// 	height : 1400,
+		// 	lang : 4900,
+		// 	carName : 'BMW'
+		// }
+		// function Car(color, owner) {
+		// 	this.owner = owner;
+		// 	this.color = color;
+		// }
+		// var car1 = new Car('red','zs');
+		// var car2 = new Car('graee','ls');
+
+		//原型的增删改查
+		// car1.carName = 'Benz'; //向对象中添加属性，并不是在原型中操作
+		// Person.prototype.carName = 'marshlati';//修改原型
+		// delete Car.prototype.carName; //删除原型中的属性
+
+		//constructor 返回构造这个对象的构造函数
+		// Student.prototype = {
+		// 	constructor : Student, //手动更改它的构造函数指向
+		// }
+		// function Student() {
+
+		// }
+		// var student = new Student();
+		// console.log(student.constructor);//prototype 本来就是存在的
+
+
+
+		// //__proto__ : 原型对象的引用
+
+		// Person.prototype.name = 'zs';
+		// function Person() {
+		// 	// var this = {
+		// 	// 	__proto__ : Person.prototype,
+		// 	// }
+		// }
+		// var obj = {
+		// 	name : 'ls'
+		// }
+		// var person = new Person();
+		// person.__proto__ = obj;//手动修改对象的原型对象
+		// console.log(person.name); //ls
+
+
+		// Test.prototype.name = 'zs';
+		// function Test() {
+
+		// }
+		// var test = new Test();
+
+		// Test.prototype.name = "ls"; //test.name = 'ls' ,虽然是在后面改的，但是引用值，后面改前面也会改
+
+		// Test.prototype = { //test.name = 'zs',重新赋上一个对象之前new 的对象引用依旧保存之前的原型类属性，
+		// 	name : 'ls'
+		// }
+
+		/*
+		原型链
+		如何构成原型链？
+		原型链上的属性的增删改查： 曾删改只有当前原型可以修改，子原型不可以
+		绝大多数对象最终都会继承自Object.prototype
+		Object.create(原型)；
+
+		*/ 
+
+
+		// Graund.prototype = {
+		// 	name : 'a',
+		// 	sayName : function() {
+		// 		console.log(this.name);
+		// 	}
+		// }
+		// function Graund() {
+		// 	this.name = 'b';
+		// }
+		// var graund = new Graund();
+
+		// // console.log(graund.sayName()); 
+		// // console.log(Graund.prototype.sayName());
+
+		// Grunad1.prototype = {
+		// 	height : 100
+		// }
+		// function Grunad1() {
+		// 		this.eat = function() {
+		// 			this.height ++; // grunad1.height = grunad1.height + 1; 添加到自身的对象上，并不能改变原型对象属性
+		// 		}
+		// }
+		// var grunad1 = new Grunad1();
+		// console.log(grunad1.eat()); 
+
+		// //Object.create(原型); 创建对象并指定原型,
+		// var obj1 = {
+		// 	name : 'zs',
+		// 	age : 22
+		// }
+		// var obj = Object.create(obj1);
+		// //还可以创建不继承自Object.prototype的对象
+		// var obj2 = Object.create(null);
+
+
+		/*
+		重写：相同名称不同方法和功能
+			Object.prototype.toString
+			Number.prototype.toString
+			Array.prototype.toString
+			Boolean.prototype.toString
+			String.prototype.toString
+		*/  
+
+		
+		// Object.prototype.toString = function() {
+		// 	return '重写';
+		// }
+
+		// Override.prototype = {
+		// 	toString : function() {
+		// 		return '重写';
+		// 	}
+		// }
+		// function Override() {
+
+		// }
+		// var override = new Override();
+
+
+	//document.write();就会隐式的调用toString()方法
+	// var obj = Object.create(null); //报错了，没哟u指定原型，没有toString方法
+	// obj.toString = function() {
+	// 	return 'document.write隐式调用toString方法';
+	// }
+	// document.write(obj);// 打印 “document.write隐式调用toString方法”
+
+
+
+//call和apply，作用：改变this指向。区别：后面传的参数形式不同
+
+	// function Person(name, age) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// }
+	// var person  = new Person("deng", 100);
+	// obj = {
+
+	// };
+	// Person.call(obj,'zs',100); //借用Person构造实现obj对象来构造属性
+
+	// Person() --> Person.call() 
+
+	// function Person(name, age, sex) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// 	this.sex = sex;
+	// }
+
+	// function Student(name, age, sex, tel, grade){
+	// 	//var this = { name : '', age : , sex : '', }
+	// 	Person.call(this, name, age, sex);
+	// 	this.tel = tel;
+	// 	this.grade = grade;
+	// }
+	// var student = new Student('sunny', 123, 'male', 139, 2017);
+
+	function Wheel(wheelSize, style) {
+		this.wheelSize = wheelSize;
+		this.style = style;
+	}
+
+	function Sit(c, sitColor) {
+		this.c = c;
+		this.sitColor = sitColor;
+	}
+
+	function Model(height, width, len) {
+		this.height = height;
+		this.width = width;
+		this.len = len;
+	}
+
+	function Car(wheelSize, style, c, sitColor, height, width, len) {
+		//apply和call的区别就是 以数组的方式传递的实参列表 
+		Wheel.apply(this, [wheelSize, style]);
+		Sit.call(this, c, sitColor);
+		Model.call(this, height, width, len);
+	}
+	var car = new Car('18寸', '简约', 3, 'red', 800, 2100, 4900);
+
+
+
+
+
+
+//拓展
+	//js 精度不准确
+
+	// var num = 0.14 * 100;
+	// console.log(num); //14.000000000000002
+
+	//所以说在js中尽量避免小数操作，会出现精度不准确
+	//Math.ceil(123.123);// 124 向上取整，只要小数点后面有数值就进1
+	//Math.floor(123.999);//123 向下取整，小数点后面的值不做计算
+
+	// for(var i = 0; i < 10; i++){
+	// 	console.log(Math.floor(Math.random() * 100));
+	// }
+	//可正常的范围 小数点 前后各16位
+	</script>
+</body>
+</html>

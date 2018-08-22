@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>类数组</title>
+</head>
+<body>
+	<script>
+	/*
+	类数组
+		1.可以利用属性名模拟数组的特征
+		2.可以动态的增长length属性
+		3.如果强行让类数组调用push方法，则会根据length属性值的位置进行属性的扩充
+	*/ 
+
+	// function test() {
+	// 	arguments.push(1); //报错: arguments不是数组
+	// }
+	// test();
+
+	//类数组
+	var obj = {
+		'0' : 'a',
+		'1' : 'b',
+		'2' : 'c',
+		'length' : 3,
+		'push' : Array.prototype.push,
+		'splice' : Array.prototype.splice //把{}改为[]
+	}
+	console.log(obj.push('d'));//{0: "a", 1: "b", 2: "c", 3: "d", length: 4, push: ƒ}
+
+	// Array.prototype.push = function(target) {
+	// 	this[this.length] = target;
+	// 	this.length ++;
+	// }
+
+	/*
+	1.属性要为索引(数字)属性
+	2.必须有length属性
+	3.最好加上push方法
+	*/ 
+	// 好处： 数组和对象的特性拼装到一起
+
+	var obj1 = {
+		'0' : "a",
+		'1' : "b",
+		'2' : "c",
+		name : 'abc',
+		age :　22,
+		length : 3,
+		push : Array.prototype.push,
+		splice : Array.prototype.splice
+	}
+
+	// 练习题
+	var test = {
+		'2' : 'a',
+		'3' : 'd',
+		'length' : 2,
+		'push' : Array.prototype.push
+	}
+	test.push('c');
+	test.push('d');
+
+	// 封装一个Type方法
+	// 
+
+	</script>
+</body>
+</html>

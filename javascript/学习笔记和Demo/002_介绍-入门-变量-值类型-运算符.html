@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 
+		js引入方式
+			页面级js
+			外部js文件
+
+		一个js标签只能做一件事，例如：一个标签同时使用外部文件和页面级js，只有外部生效
+
+
+	 -->
+	 <script>
+	 	//变量声明
+		 	// var a; //变量声明 我们向系统申请了一个空间 
+		 	// a = 100;//把100放到这个空间里
+
+		 	//单一var模式
+		 	/*var a = 10,
+		 		b = 20,
+		 		c = 30,
+		 		d,
+		 		e;*/
+
+	 	// 赋值顺序 运算 > 赋值优先级	(从右到左)
+
+	 	/*
+		基本语法：
+			原始值 stack       first in last out  不可改变的原始值  二次覆盖
+			Number Boolean String Undefined Null
+
+			引用值
+			array object function ...date RegExp
+
+			
+			一个代码块的错误不会影响其他代码块的执行
+
+
+		运算操作符
+			“+”
+				1.数学运算、字符串连接
+				2.任何数据类型相加字符串都等于字符串
+
+			“-”,“*”,“/”,“%”,“=”,“()”
+				优先级：  “=” 最弱  “()”最高
+
+			赋值顺序 自右向左 
+			计算的顺序 自左向右  a = a + b + c;
+
+	 	*/ 
+
+
+
+	 	//原始值
+	 	 // var a = 10;
+	 	 // var b = a; // 10
+	 	 // a = 20;
+
+
+	 	//引用值
+		// var arr = [1,2];
+		// var arr1 = arr; // 1,2,3
+		// arr.push("3"); //这里是在原数组上添加了一个值，地址是同一个，所以arr1也会跟着改变
+
+		// var arr = [1,2];
+		// var arr1 = arr; // 1,2
+		// arr = [1,3]; //这里是给arr重新指定了一个值存储的地址，而arr1还是原来的存储地址
+
+
+		//操作符
+
+		// var a = 10;
+		// var b = ++a - 1 + a++;
+		// console.log(a+" "+b);
+
+
+		//练习题 
+		var a = 123;
+		var b = 456;
+		a = a + b;
+		b = a - b;
+		a = a - b;
+
+	 </script>
+</body>
+</html>

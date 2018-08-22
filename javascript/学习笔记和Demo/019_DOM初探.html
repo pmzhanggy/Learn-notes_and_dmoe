@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom初探</title>
+	<style>
+		button{
+			border: 0px;
+			color: #666;
+		}
+		.content{
+			display:none;
+			width: 200px;
+			height: 200px;
+			border: 2px solid red;
+		}
+
+		.active{
+			background-color: cadetblue;
+			color: #fff;
+			outline: none;
+		}
+		ul{
+
+			list-style: none;
+			height: 200px;
+			width: 200px;
+		}
+		li{
+			box-sizing: border-box;
+			width: 10px;
+			height: 10px;
+			border: 1px solid #666;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<!-- /*
+	什么是DOM
+		1.DOM —— Document Object Model
+		2.DOM定义了表示和修改文档所需的方法。DOM对象即为宿主对象，由浏览器厂商定义，用来操作HTMl和XML功能的一类集合。也有人称DOM是 HTML和 XML的标准编程接口
+		3.让js操作HTML的一个编程接口
+	*/ -->
+
+	<!--<div></div>-->
+
+	<!--<div class="wrapper">-->
+		<!--<button class="active">111</button>-->
+		<!--<button>222</button>-->
+		<!--<button>333</button>-->
+		<!--<div class="content" style="display: block">1</div>-->
+		<!--<div class="content">2</div>-->
+		<!--<div class="content">3</div>-->
+	<!--</div>-->
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	ul>li[date]
+	<script>
+
+        // var div = document.getElementsByTagName('div')[0];
+        // div.style.width = '100px';
+        // div.style.height = '100px';
+        // div.style.backgroundColor = 'red';
+        //
+        // var count = 0;
+        // div.onclick = function () {
+		 //    // this.style.backgroundColor = 'green';
+		 //    // this.style.borderRadius = '50%';
+        //
+			// count++;
+			// if(count % 2 == 1){
+			// 	this.style.backgroundColor = 'green';
+			// }else{
+			//     this.style.backgroundColor = 'red';
+			// }
+			//
+        // }
+
+
+		// var btn = document.getElementsByTagName('button');
+		// var content = document.getElementsByClassName('content');
+		// var btnLen = btn.length;
+		// var contentLen = content.length;
+		// for(var i = 0; i < btnLen; i++){
+		// 	(function(n) {
+         //        btn[i].onclick = function () {
+         //            for(var j = 0; j < btnLen; j++){
+         //                btn[j].className = '';
+         //                content[j].style.display = 'none';
+         //            }
+         //            this.className = 'active';
+         //            content[n].style.display = 'block';
+         //        }
+		// 	}(i))
+		// }
+
+
+
+		// var sleep = document.createElement('div');
+		// document.body.appendChild(sleep);
+		// sleep.style.width = '100px';
+		// sleep.style.height = '100px';
+		// sleep.style.backgroundColor = 'red';
+		// sleep.style.position = 'absolute';
+		// sleep.style.left = '150px';
+		// sleep.style.top = '150px';
+
+		//移动（自动）
+		// console.log(typeof sleep.style.left); string
+		// var num = 1;
+        // var timer = setInterval(function () {
+        //     num += num / 7;
+        // 	sleep.style.left = parseInt(sleep.style.left) + num + 'px';
+        // 	sleep.style.top = parseInt(sleep.style.top) + num + 'px';
+        // 	if(parseInt(sleep.style.left) > 200){
+        // 	    clearInterval(timer);
+        // 	}
+        // },10);
+
+		//移动（手动）
+		// var speed = 5;
+		// document.onkeydown = function (e) {
+		// 	console.log(e);
+		// 	// top：38  buttom: 40 left: 37 right: 39
+		// 	switch (e.which){
+		// 		case 38:
+		// 		    sleep.style.top = parseInt(sleep.style.top) - speed + 'px';
+		// 		    break;
+         //        case 40:
+         //            sleep.style.top = parseInt(sleep.style.top) + speed + 'px';
+         //            break;
+         //        case 37:
+         //            sleep.style.left = parseInt(sleep.style.left) - speed + 'px';
+         //            break;
+         //        case 39:
+         //            sleep.style.left = parseInt(sleep.style.left) + speed + 'px';
+         //            break;
+		// 	}
+        // }
+
+
+
+	//画笔
+		var ul = document.getElementsByTagName('ul');
+		ul.onmousemove = function (e) {
+			var event = e || window.event;
+			var target = event.target ||　event.srcElement;
+        }
+	</script>
+</body>
+</html>

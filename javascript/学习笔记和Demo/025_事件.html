@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            width: 150px;
+
+        }
+        li {
+            border: 1px solid #666666;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 100px;width: 100px;background-color: red;"></div>
+    <!--行间样式 ：onclick="console.log('a')"-->
+<script>
+    var div = document.getElementsByTagName('div')[0];
+
+    //onclick
+    // div.onclick = function() {};  //只能绑定过一个事件反馈函数，相当写在行间样式中
+
+    //addEventListener 可以为一个事件绑定多个事件处理函数
+    // div.addEventListener('click', function () {
+    //     console.log('a');
+    // }, false);
+
+    // div.attchEvent('click',function () {
+    //     console.log('attachEvent')
+    // });
+
+
+//解除绑定事件处理函数
+//     div.onclick = null;
+//     div.removeEventListener(type, fn, false);//使用匿名函数无法解绑
+//     div.detachEvent('on' +　type, fn);
+
+</script>
+    <!--* 小练习-->
+    <!--*   使用原生js,addEventListener,给每个li元素绑定一个click事件，输出他们的顺序*/-->
+    <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ul>
+    <script>
+        var li = document.getElementsByTagName('li');
+        for(var i = 0; i < li.length; i++) {
+            (function (j) {
+                li[j].addEventListener('click', function () {
+                    console.log(j);
+                }, false);
+            }(i));
+        }
+    </script>
+</body>
+</html>

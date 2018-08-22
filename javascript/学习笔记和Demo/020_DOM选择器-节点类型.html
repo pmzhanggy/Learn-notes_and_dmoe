@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM选择器,节点类型</title>
+</head>
+<body>
+<!--// document是一个对象，代表整个文档-->
+	<div id="only" class="demo">
+		<strong></strong>
+		<span></span>
+		<em></em>
+	</div>
+
+	<script type="text/javascript">
+
+		// var div = document.getElementById('only');
+		// var div = document.getElementsByTagName('div')[0];
+
+
+
+	/*
+	* 遍历元素节点 除去 children 其他不兼容ie
+	* 	parentElement:查找父元素
+	*	children: 遍历当前元素的元素子节点
+	*	firstElementChild
+	*	nextElementSibling
+	*/
+
+	/*节点的类型
+		元素节点 1
+		属性节点 2
+		文本节点 3
+		注释节点 8
+		document 9
+		DocumentFragment 11 (文档碎片节点)*/
+
+	// 节点的四个属性
+	// 	nodeName 元素的标签名，以大写形式表示，只读
+	// 	nodeValue Text节点或Comment节点的文本内容，可读写
+	// 	nodeType 该节点的类型，只读
+	// 	attributes Element节点的属性集合
+	// 节点的一个方法 NodeJS.hasChildNodes(); 判断有没有子节点
+
+	//遍历元素的下的所有子节点
+        var div = document.getElementsByTagName('div')[0];
+
+        function relNode(node) {
+            var objArr = {
+                length : 0,
+                push : Array.prototype.push,
+                splice : Array.prototype.splice
+                },
+            childnode = node.childNodes,
+            childnodeLen = childnode.length;
+            for(var i = 0; i < childnodeLen; i++) {
+                if(childnode[i].nodeType == 1) {
+                    objArr.push(childnode[i]);
+                }
+            }
+            return objArr;
+        }
+        console.log(relNode(div));
+        console.log(div.hasChildNodes());
+	</script>
+</body>
+</html>
