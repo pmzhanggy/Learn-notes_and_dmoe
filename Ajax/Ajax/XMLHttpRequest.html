@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>XMLHttpRequest</title>
+</head>
+<body>
+  <h2>员工查询</h2>
+  <label for="keyword">请输入员工编号：</label>
+  <input type="text" id="keyword">
+  <button id="search">查询</button>
+  <p id="searchResult"></p>
+  <hr>
+  <h2>员工创建</h2>
+  <label for="name">请输入员工姓名：</label>
+  <input type="text" id="name"> 
+  <br>
+  <label for="number">请输入员工编号：</label>
+  <input type="number" id="number">
+  <br>
+  <label for="sex">请选择员工性别：</label>
+  <!-- <input type="text" id="sex" list="sexlist"> -->
+  <select name="" id="sex">
+    <option value="男">男</option>
+    <option value="女">女</option>
+  </select>
+  <br>
+  <label for="job">请输入员工职位：</label>
+  <input type="text" id="job">
+  <br>
+  <input type="submit" id="save" value="确认创建">
+  <p id="createResult"></p>
+
+  <script>
+    document.getElementById('search').onclick = function() {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', 'server.php?number=' + document.getElementById('keyword').value)
+    
+      xhr.send();
+      xhr.onreadystatechange = function() {
+        if( xhr.readyState === 4 && xhr.status === 200) {
+          // console.log('asdfasdf');
+          document.getElementById('searchResult').innerText = xhr.responseText;
+        } else {
+          console.log('发生错误'+xhr.status);
+        }
+      }
+    }
+
+    document.getElementById('save').onclick = function() {
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', 'server.php')
+      let data ="name=" + document.getElementById("name").value 
+	                  + "&number=" + document.getElementById("number").value 
+	                  + "&sex=" + document.getElementById("sex").value 
+	                  + "&job=" + document.getElementById("job").value;
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+      xhr.send(data);
+      xhr.onreadystatechange = function() {
+        if( xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById('createResult').innerText = xhr.responseText;
+        } else {
+          // console.log('发生错误'+xhr.status);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
